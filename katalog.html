@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog Barang - SiWarung</title>
+<style>
+:root {
+--bg: #eef2fb;
+--surface: #ffffff;
+--surface-soft: #f5f7ff;
+--text: #1f2a45;
+--muted: #6f7a95;
+--border: #d7e0f4;
+--primary: #1765e7;
+--success: #1f8e4a;
+--radius: 24px;
+--shadow: 0 18px 40px rgba(31, 42, 69, 0.08);
+}
+* {
+box-sizing: border-box;
+}
+body {
+margin: 0;
+min-height: 100vh;
+font-family: 'Inter', system-ui, sans-serif;
+background: radial-gradient(circle at top left, rgba(23, 101, 231, 0.12), transparent 26%),
+rgba(238, 246, 251, 1);
+color: var(--text);
+}
+.page {
+max-width: 1180px;
+margin: 0 auto;
+padding: 30px 24px 40px;
+}
+.header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+margin-bottom: 32px;
+}
+.brand {
+display: flex;
+align-items: center;
+gap: 14px;
+background: var(--surface);
+padding: 14px 18px;
+border-radius: 24px;
+box-shadow: var(--shadow);
+}
+.brand-icon {
+width: 48px;
+height: 48px;
+display: grid;
+place-items: center;
+border-radius: 16px;
+background: var(--surface-soft);
+}
+.brand-icon img {
+width: 32px;
+height: 32px;
+object-fit: contain;
+}
+.brand-name {
+margin: 0;
+font-size: 20px;
+font-weight: 700;
+}
+.nav-links {
+display: flex;
+align-items: center;
+gap: 24px;
+font-size: 14px;
+}
+.nav-links a {
+color: var(--muted);
+text-decoration: none;
+font-weight: 600;
+}
+.nav-links a:hover {
+color: var(--text);
+}
+.cart-button {
+position: relative;
+width: 48px;
+height: 48px;
+border-radius: 16px;
+background: var(--surface);
+border: 1px solid rgba(23, 101, 231, 0.16);
+display: grid;
+place-items: center;
+box-shadow: var(--shadow);
+cursor: pointer;
+}
+.cart-badge {
+position: absolute;
+top: 8px;
+right: 8px;
+min-width: 18px;
+height: 18px;
+padding: 0 5px;
+border-radius: 999px;
+background: #ff5f5f;
+color: white;
+font-size: 12px;
+font-weight: 700;
+display: grid;
+place-items: center;
+}
+.search-bar {
+display: flex;
+gap: 10px;
+margin-bottom: 30px;
+}
+.search-bar input {
+flex: 1;
+border: 1px solid var(--border);
+border-radius: 12px;
+padding: 14px 18px;
+font-size: 14px;
+color: var(--text);
+background: var(--surface);
+outline: none;
+box-shadow: inset 0 1px 2px rgba(31, 42, 69, 0.05);
+}
+.search-bar button {
+border: none;
+border-radius: 12px;
+background: var(--primary);
+color: white;
+padding: 0 24px;
+min-width: 120px;
+font-size: 14px;
+font-weight: 700;
+cursor: pointer;
+box-shadow: 0 14px 28px rgba(23, 101, 231, 0.16);
+}
+.products {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 20px;
+margin-bottom: 36px;
+}
+.product-card {
+background: var(--surface);
+border-radius: 28px;
+padding: 24px;
+box-shadow: var(--shadow);
+display: grid;
+gap: 18px;
+align-items: start;
+}
+.product-image {
+height: 200px;
+border-radius: 28px;
+background: #f7f8ff;
+border: 1px solid rgba(215, 224, 244, 0.9);
+display: grid;
+place-items: center;
+overflow: hidden;
+position: relative;
+box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8);
+}
+.product-image::before {
+content: '';
+position: absolute;
+inset: 0;
+background: radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 35%);
+}
+.product-image svg {
+width: 100px;
+height: 100px;
+position: relative;
+z-index: 1;
+}
+.product-title {
+margin: 0;
+font-size: 18px;
+font-weight: 700;
+}
+.product-price {
+margin: 0;
+font-size: 22px;
+font-weight: 700;
+}
+.product-stock {
+color: var(--muted);
+font-size: 13px;
+margin: 0;
+}
+.btn-add-cart {
+border: none;
+border-radius: 14px;
+background: var(--success);
+color: white;
+padding: 14px 18px;
+font-size: 14px;
+font-weight: 700;
+cursor: pointer;
+box-shadow: 0 14px 28px rgba(31, 132, 85, 0.18);
+transition: transform 0.2s ease;
+}
+.btn-add-cart:hover {
+transform: translateY(-2px);
+}
+.history {
+background: var(--surface);
+border-radius: 28px;
+padding: 24px;
+box-shadow: var(--shadow);
+}
+.history h2 {
+margin: 0 0 20px;
+font-size: 20px;
+font-weight: 700;
+}
+.history-table {
+width: 100%;
+border-collapse: collapse;
+min-width: 540px;
+}
+.history-table th,
+.history-table td {
+text-align: left;
+padding: 14px 16px;
+border-bottom: 1px solid rgba(31, 42, 69, 0.08);
+}
+.history-table th {
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+color: var(--muted);
+}
+.history-table tbody tr:last-child td {
+border-bottom: none;
+}
+.history-table td {
+font-size: 14px;
+color: var(--text);
+}
+@media (max-width: 1024px) {
+.products {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+@media (max-width: 780px) {
+.header,
+.search-bar {
+flex-direction: column;
+align-items: stretch;
+}
+.nav-links {
+justify-content: space-between;
+width: 100%;
+}
+.products {
+grid-template-columns: 1fr;
+}
+.history-table {
+min-width: 100%;
+}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="header">
+<div class="brand">
+<div class="brand-icon">
+<img src="assets/logo.png" alt="SiWarung Logo">
+</div>
+<div>
+<p class="brand-name">SiWarung</p>
+</div>
+</div>
+<div class="nav-links">
+<a href="#">Beranda</a>
+<a href="#">Riwayat Belanja</a>
+<button class="cart-button" aria-label="Keranjang Belanja">
+<span class="cart-badge">2</span>
+</button>
+</div>
+</header>
+<div class="search-bar">
+<input type="text" placeholder="Cari Barang...">
+<button type="button">Cari</button>
+</div>
+<section class="products">
+<article class="product-card">
+<div class="product-image">
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="26" y="28" width="68" height="64" rx="16" fill="#fdf8f1" stroke="#d7e0f4" stroke-width="4"/>
+<path d="M26 36H94" stroke="#e8eaf1" stroke-width="16" stroke-linecap="round"/>
+<rect x="28" y="28" width="68" height="16" rx="10" fill="#d43c3c"/>
+<path d="M34 32H86" stroke="#ffffff" stroke-width="3"/>
+<g stroke="#d7e0f4" stroke-width="3">
+<path d="M38 44V68"/>
+<path d="M50 44V68"/>
+<path d="M62 44V68"/>
+<path d="M74 44V68"/>
+</g>
+<g fill="#ffcd7c">
+<rect x="36" y="44" width="6" height="20" rx="3"/>
+<rect x="48" y="44" width="6" height="20" rx="3"/>
+<rect x="60" y="44" width="6" height="20" rx="3"/>
+<rect x="72" y="44" width="6" height="20" rx="3"/>
+</g>
+<path d="M34 44H82" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+</svg>
+</div>
+<p class="product-title">Rokok A</p>
+<p class="product-price">Rp 15.000</p>
+<p class="product-stock">Stok: 3 Tersisa</p>
+<button class="btn-add-cart" type="button">Tambah ke Keranjang</button>
+</article>
+<article class="product-card">
+<div class="product-image">
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 18C50 14.6863 53.5817 12 58 12H62C66.4183 12 70 14.6863 70 18V34H50V18Z" fill="#1765e7"/>
+<path d="M44 34H76C80.4183 34 84 37.5817 84 42V86C84 90.4183 80.4183 94 76 94H44C39.5817 94 36 90.4183 36 86V42C36 37.5817 39.5817 34 44 34Z" fill="#eef6ff" stroke="#d7e0f4" stroke-width="4"/>
+<path d="M48 46H72" stroke="#1765e7" stroke-width="5" stroke-linecap="round"/>
+<path d="M48 60H72" stroke="#1765e7" stroke-width="5" stroke-linecap="round"/>
+<path d="M48 74H72" stroke="#1765e7" stroke-width="5" stroke-linecap="round"/>
+<path d="M41 40H79" stroke="#1765e7" stroke-width="7" stroke-linecap="round"/>
+<rect x="51" y="46" width="18" height="28" rx="8" fill="#1765e7" opacity="0.18"/>
+<path d="M58 18V34" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+<circle cx="58" cy="82" r="8" fill="#1765e7" opacity="0.35"/>
+</svg>
+</div>
+<p class="product-title">Minuman B</p>
+<p class="product-price">Rp 5.000</p>
+<p class="product-stock">Stok: 2 Tersisa</p>
+<button class="btn-add-cart" type="button">Tambah ke Keranjang</button>
+</article>
+<article class="product-card">
+<div class="product-image">
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<filter id="shadow">
+<feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+</filter>
+<rect x="20" y="18" width="80" height="90" rx="4" fill="#e63946" filter="url(#shadow)"/>
+<rect x="20" y="18" width="80" height="18" rx="4" fill="#ffc107"/>
+<rect x="20" y="18" width="80" height="4" fill="#ffeb3b"/>
+<text x="60" y="32" font-size="8" font-weight="bold" text-anchor="middle" fill="#c41e3a">MIE INSTAN</text>
+<rect x="22" y="38" width="76" height="28" rx="2" fill="#ffffff"/>
+<path d="M 26 45 Q 32 43 38 45 T 50 45 T 62
+T 74 45 T 86 45" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M 26 52 Q 32 50 38 52 T 50 52 T 62
+T 74 52 T 86 52" stroke="#ffd700" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M 26 59 Q 32 57 38 59 T 50 59 T 62
+T 74 59 T 86 59" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+<rect x="22" y="68" width="76" height="38" fill="#d32f2f"/>
+<rect x="20" y="78" width="80" height="6" fill="#ffc107"/>
+<rect x="26" y="86" width="14" height="14" rx="1" fill="#ffd700" stroke="#ff6b35" stroke-width="1"/>
+<text x="33" y="95" font-size="6" font-weight="bold" text-anchor="middle" fill="#d32f2f">PEDAS</text>
+<rect x="44" y="86" width="14" height="14" rx="1" fill="#ffb74d" stroke="#ff8c00" stroke-width="1"/>
+<text x="51" y="95" font-size="6" font-weight="bold" text-anchor="middle" fill="#ffffff">GURIH</text>
+<rect x="62" y="86" width="14" height="14" rx="1" fill="#ff6b35" stroke="#c41e3a" stroke-width="1"/>
+<text x="69" y="95" font-size="6" font-weight="bold" text-anchor="middle" fill="#ffffff">SEDAP</text>
+<rect x="80" y="86" width="12" height="14" rx="1" fill="#ffeb3b" stroke="#ffc107" stroke-width="1"/>
+<text x="86" y="95" font-size="5" font-weight="bold" text-anchor="middle" fill="#d32f2f">6X</text>
+<circle cx="92" cy="28" r="4" fill="#ffeb3b"/>
+<text x="92" y="30" font-size="7" font-weight="bold" text-anchor="middle" fill="#ff6b35"> </text>
+<path d="M 20 75 L 100 75" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+</svg>
+</div>
+<p class="product-title">Mie Instan C</p>
+<p class="product-price">Rp 2.500</p>
+<p class="product-stock">Stok: 1 Tersisa</p>
+<button class="btn-add-cart" type="button">Tambah ke Keranjang</button>
+</article>
+</section>
+<section class="history">
+<h2>Riwayat Belanja</h2>
+<table class="history-table">
+<thead>
+<tr>
+<th>Tanggal</th>
+<th>Barang</th>
+<th>Jumlah</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>05/04</td>
+<td>Rokok A</td>
+<td>2 Bungkus</td>
+</tr>
+<tr>
+<td>03/04</td>
+<td>Minuman B</td>
+<td>10 Botol</td>
+</tr>
+<tr>
+<td>01/04</td>
+<td>Mie Instan C</td>
+<td>15 Bungkus</td>
+</tr>
+<tr>
+<td>01/04</td>
+<td>Mie Instan C</td>
+<td>5 Bungkus</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+  <!-- Penyesuaian Pertemuan 13: script eksternal, tampilan asli tidak diubah -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/siwarung-pertemuan13.js"></script>
+</body>
+</html>

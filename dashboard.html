@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin - SiWarung</title>
+<style>
+:root {
+--bg: #eef3fb;
+--surface: #ffffff;
+--primary: #2d6cdf;
+--text: #1f2f46;
+--danger: #f05a5a;
+--radius: 20px;
+--shadow: 0 18px 40px rgba(15, 42, 103, 0.08);
+}
+* {
+box-sizing: border-box;
+}
+body {
+margin: 0;
+font-family: 'Inter', system-ui, sans-serif;
+background: radial-gradient(circle at top left, rgba(45,108,223,0.10), transparent 32%),
+radial-gradient(circle at bottom right, rgba(45,108,223,0.08), transparent 28%),
+var(--bg);
+color: var(--text);
+}
+body::before {
+content: none;
+}
+.page {
+max-width: 1180px;
+margin: 0 auto;
+padding: 28px 24px 40px;
+}
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 18px;
+margin-bottom: 28px;
+}
+.brand {
+display: flex;
+align-items: center;
+gap: 14px;
+}
+.brand-icon {
+width: 200px;
+height: 200px;
+border-radius: 24px;
+background: #ffffff;
+display: grid;
+place-items: center;
+box-shadow: var(--shadow);
+padding: 0;
+overflow: hidden;
+flex-shrink: 0;
+}
+.brand-icon img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+background: #ffffff;
+}
+.brand-text {
+display: grid;
+gap: 6px;
+}
+.brand-text .title {
+margin: 0;
+font-size: 24px;
+font-weight: 800;
+color: #344862;
+}
+.brand-text .subtitle {
+margin: 0;
+color: #5b7597;
+font-size: 14px;
+font-weight: 800;
+}
+.header-actions {
+display: flex;
+align-items: center;
+gap: 16px;
+}
+.icon-button {
+position: relative;
+width: 46px;
+height: 46px;
+border-radius: 14px;
+border: 1px solid rgba(45,108,223,0.18);
+background: rgba(255,255,255,1);
+display: grid;
+place-items: center;
+cursor: pointer;
+transition: transform 0.2s ease;
+}
+.icon-button:hover {
+transform: translateY(-1px);
+}
+.icon-button .tooltip {
+position: absolute;
+bottom: -34px;
+left: 50%;
+transform: translateX(-50%);
+background: rgba(35, 48, 71, 1);
+color: #ffffff;
+padding: 8px 12px;
+border-radius: 8px;
+font-size: 11px;
+font-weight: 700;
+white-space: nowrap;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.2s ease;
+z-index: 10;
+}
+.icon-button:hover .tooltip {
+opacity: 1;
+}
+.summary {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 18px;
+margin-bottom: 28px;
+}
+.summary-card {
+background: #ffffff;
+border-radius: var(--radius);
+padding: 24px 22px;
+box-shadow: var(--shadow);
+position: relative;
+overflow: hidden;
+}
+.summary-card::after {
+content: '';
+position: absolute;
+right: -20px;
+top: -20px;
+width: 120px;
+height: 120px;
+border-radius: 50%;
+background: rgba(45,108,223,0.08);
+}
+.summary-card h2 {
+margin: 0;
+font-size: 13px;
+color: #4b6484;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+font-weight: 800;
+}
+.summary-card p {
+margin: 18px 0 0;
+font-size: 28px;
+font-weight: 800;
+line-height: 1.1;
+color: #1f2f46;
+}
+.layout {
+display: grid;
+grid-template-columns: 2.2fr 1fr;
+gap: 22px;
+}
+.panel {
+background: #ffffff;
+border-radius: var(--radius);
+padding: 28px;
+box-shadow: var(--shadow);
+}
+.panel h2 {
+margin-top: 0;
+margin-bottom: 12px;
+font-size: 20px;
+letter-spacing: -0.03em;
+font-weight: 800;
+color: #4b6484;
+}
+.panel .subtitle {
+margin: 0 0 22px;
+color: #6e85a4;
+font-size: 14px;
+font-weight: 800;
+}
+.chart-card {
+display: grid;
+gap: 18px;
+}
+.chart-legend {
+display: flex;
+justify-content: space-between;
+gap: 12px;
+flex-wrap: wrap;
+color: #6e85a4;
+font-size: 14px;
+font-weight: 800;
+}
+.chart-legend span {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+}
+.chart-legend .dot {
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: var(--primary);
+}
+.chart-bars {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 12px;
+align-items: end;
+height: 300px;
+padding: 30px 10px 15px;
+border-bottom: 2px solid #d0dce8;
+}
+.bar-wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-end;
+height: 100%;
+}
+.bar {
+border-radius: 6px 6px 0 0;
+background: linear-gradient(180deg, #b9ccff 0%, #86a8f2 55%, #5b86dc 100%);
+min-height: 15px;
+width: 100%;
+box-shadow: 0 4px 10px rgba(45, 108, 223, 0.18);
+}
+.bar-label {
+margin-top: 10px;
+text-align: center;
+font-size: 12px;
+font-weight: 800;
+color: #4b6484;
+}
+.stock-list {
+display: grid;
+gap: 16px;
+}
+.stock-item {
+display: flex;
+align-items: flex-start;
+gap: 14px;
+padding: 16px;
+border-radius: 16px;
+background: #fff8f5;
+border: 1px solid rgba(240,90,90,0.12);
+}
+.stock-item .badge {
+width: 36px;
+height: 36px;
+border-radius: 12px;
+background: rgba(240,90,90,0.12);
+color: var(--danger);
+display: grid;
+place-items: center;
+font-weight: 700;
+}
+.stock-item strong {
+display: block;
+margin-bottom: 4px;
+font-size: 15px;
+font-weight: 800;
+color: #344862;
+}
+.stock-item p {
+margin: 0;
+color: #5b7597;
+font-size: 13px;
+font-weight: 800;
+}
+@media (max-width: 960px) {
+.summary {
+grid-template-columns: 1fr;
+}
+.layout {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 640px) {
+.page {
+padding: 18px 16px 32px;
+}
+.header-actions {
+display: none;
+}
+.brand-icon {
+width: 140px;
+height: 140px;
+}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+<div class="brand">
+<div class="brand-icon">
+<img src="assets/logo.png" alt="SiWarung logo">
+</div>
+<div class="brand-text">
+<p class="title">SiWarung</p>
+<p class="subtitle">Dashboard Admin</p>
+</div>
+</div>
+<div class="header-actions">
+<a href="input penjualan.html" class="icon-button" aria-label="Input Penjualan">
+
+🧾
+<span class="tooltip">Input Penjualan</span>
+</a>
+<a href="kelola stok produk.html" class="icon-button" aria-label="Stok">
+
+📦
+<span class="tooltip">Stok</span>
+</a>
+<a href="laporan.html" class="icon-button" aria-label="Laporan">
+
+📊
+<span class="tooltip">Laporan</span>
+</a>
+<a href="index.html" class="icon-button" aria-label="Logout">
+
+🚪
+<span class="tooltip">Logout</span>
+</a>
+</div>
+</header>
+<section class="summary">
+<article class="summary-card">
+<h2>Total Stok</h2>
+<p>324 Barang</p>
+</article>
+<article class="summary-card">
+<h2>Stok Menipis</h2>
+<p>3 Item Low</p>
+</article>
+<article class="summary-card">
+<h2>Total Penjualan Hari Ini</h2>
+<p>Rp 1.750.000</p>
+</article>
+</section>
+<div class="layout">
+<section class="panel">
+<h2>Grafik Penjualan</h2>
+<p class="subtitle">Penjualan mingguan menunjukkan tren kenaikan</p>
+<div class="chart-card">
+<div class="chart-legend">
+<span><span class="dot"></span> Penjualan</span>
+<span>Target: <strong>Rp 1.200.000</strong></span>
+</div>
+<div class="chart-bars">
+<div class="bar-wrapper">
+<div class="bar" style="height: 25%;"></div>
+<div class="bar-label">Senin</div>
+</div>
+<div class="bar-wrapper">
+<div class="bar" style="height: 50%;"></div>
+<div class="bar-label">Selasa</div>
+</div>
+<div class="bar-wrapper">
+<div class="bar" style="height: 37.5%;"></div>
+<div class="bar-label">Rabu</div>
+</div>
+<div class="bar-wrapper">
+<div class="bar" style="height: 62.5%;"></div>
+<div class="bar-label">Kamis</div>
+</div>
+<div class="bar-wrapper">
+<div class="bar" style="height: 75%;"></div>
+<div class="bar-label">Jum'at</div>
+</div>
+<div class="bar-wrapper">
+<div class="bar" style="height: 80%;"></div>
+<div class="bar-label">Sabtu</div>
+</div>
+<div class="bar-wrapper">
+<div class="bar" style="height: 110%;"></div>
+<div class="bar-label">Minggu</div>
+</div>
+</div>
+</div>
+</section>
+<aside class="panel">
+<h2>Peringatan Stok Menipis</h2>
+<p class="subtitle">Item berikut sudah mencapai batas minimum stok.</p>
+<div class="stock-list">
+<div class="stock-item">
+<div class="badge">!</div>
+<div>
+<strong>Rokok A</strong>
+<p>Sisa 3</p>
+</div>
+</div>
+<div class="stock-item">
+<div class="badge">!</div>
+<div>
+<strong>Minuman B</strong>
+<p>Sisa 2</p>
+</div>
+</div>
+<div class="stock-item">
+<div class="badge">!</div>
+<div>
+<strong>Mie Instan C</strong>
+<p>Sisa 1</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+  <!-- Penyesuaian Pertemuan 13: script eksternal, tampilan asli tidak diubah -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/siwarung-pertemuan13.js"></script>
+</body>
+</html>
