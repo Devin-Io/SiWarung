@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog Pembeli - SiWarung</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/siwarung-bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-siwarung sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="katalog.html">
+      <img src="assets/logo.png" class="brand-logo" alt="Logo SiWarung">
+      <span>SiWarung</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSiWarung" aria-controls="navbarSiWarung" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSiWarung">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link active" href="katalog.html"><i class="bi bi-grid me-1"></i>Katalog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#keranjangBelanja"><i class="bi bi-cart3 me-1"></i>Keranjang <span class="badge rounded-pill text-bg-primary" id="cartBadge">0</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#riwayatBelanja"><i class="bi bi-clock-history me-1"></i>Riwayat</a></li>
+        <li class="nav-item ms-lg-2"><a class="btn btn-outline-primary btn-sm" href="index.html"><i class="bi bi-box-arrow-right me-1"></i>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<main class="section-space">
+  <div class="container">
+    <div class="row align-items-center g-3 mb-4">
+      <div class="col-lg-7">
+        <h1 class="page-title mb-2">Katalog Pembeli</h1>
+        <p class="page-subtitle mb-0">Pilih barang yang ingin dibeli, masukkan ke keranjang, lalu checkout untuk menyimpan riwayat belanja.</p>
+      </div>
+      <div class="col-lg-5">
+        <div class="input-group search-bar">
+          <input type="text" class="form-control" placeholder="Cari barang..." aria-label="Cari barang">
+          <button class="btn btn-primary" type="button"><i class="bi bi-search me-1"></i>Cari</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 product-grid">
+      <div class="col-sm-6 col-lg-4">
+        <div class="card product-card h-100" data-product="Rokok A" data-price="15000" data-unit="Bungkus">
+          <div class="product-visual product-visual-clean">
+            <svg class="product-svg" viewBox="0 0 160 130" role="img" aria-label="Ilustrasi rokok kemasan pixel">
+              <rect x="0" y="0" width="160" height="130" fill="none"/>
+              <rect x="48" y="18" width="64" height="92" rx="0" fill="#f7f4e9" stroke="#26364d" stroke-width="5"/>
+              <rect x="48" y="18" width="64" height="20" fill="#d84242" stroke="#26364d" stroke-width="5"/>
+              <rect x="58" y="48" width="44" height="20" fill="#ffffff" stroke="#d8e0ef" stroke-width="4"/>
+              <rect x="60" y="78" width="40" height="8" fill="#d84242"/>
+              <rect x="60" y="92" width="40" height="8" fill="#f1c75b"/>
+              <rect x="102" y="38" width="10" height="72" fill="#e9dfc8" opacity="0.75"/>
+            </svg>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5 fw-bold">Rokok A</h2>
+            <p class="text-muted mb-2">Stok: 3 Bungkus</p>
+            <strong class="product-price mb-3">Rp 15.000</strong>
+            <button class="btn btn-success mt-auto btn-add-cart" type="button">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card product-card h-100" data-product="Air Mineral" data-price="5000" data-unit="Botol">
+          <div class="product-visual product-visual-clean">
+            <svg class="product-svg" viewBox="0 0 160 130" role="img" aria-label="Ilustrasi botol air mineral pixel">
+              <rect x="0" y="0" width="160" height="130" fill="none"/>
+              <rect x="67" y="14" width="26" height="14" fill="#2d6cdf" stroke="#26364d" stroke-width="4"/>
+              <rect x="70" y="28" width="20" height="22" fill="#ccefff" stroke="#26364d" stroke-width="4"/>
+              <rect x="52" y="48" width="56" height="64" fill="#dff8ff" stroke="#26364d" stroke-width="5"/>
+              <rect x="58" y="60" width="44" height="24" fill="#62a8ff"/>
+              <rect x="62" y="68" width="36" height="6" fill="#ffffff"/>
+              <rect x="62" y="84" width="36" height="8" fill="#b8ecff"/>
+              <rect x="90" y="52" width="10" height="56" fill="#ffffff" opacity="0.55"/>
+            </svg>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5 fw-bold">Air Mineral</h2>
+            <p class="text-muted mb-2">Stok: 12 Botol</p>
+            <strong class="product-price mb-3">Rp 5.000</strong>
+            <button class="btn btn-success mt-auto btn-add-cart" type="button">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card product-card h-100" data-product="Mie Instan C" data-price="2500" data-unit="Bungkus">
+          <div class="product-visual product-visual-clean">
+            <svg class="product-svg" viewBox="0 0 160 130" role="img" aria-label="Ilustrasi bungkus mie instan pixel">
+              <rect x="0" y="0" width="160" height="130" fill="none"/>
+              <rect x="28" y="30" width="104" height="70" fill="#ffcb48" stroke="#26364d" stroke-width="5"/>
+              <rect x="28" y="30" width="104" height="13" fill="#e83e3e"/>
+              <rect x="28" y="87" width="104" height="13" fill="#e83e3e"/>
+              <rect x="45" y="50" width="70" height="28" fill="#fff7df" stroke="#f08c00" stroke-width="4"/>
+              <path d="M54 64 H66 M70 64 H82 M86 64 H102" stroke="#d88a00" stroke-width="4"/>
+              <rect x="50" y="82" width="24" height="5" fill="#e83e3e"/>
+              <rect x="86" y="82" width="24" height="5" fill="#e83e3e"/>
+            </svg>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5 fw-bold">Mie Instan C</h2>
+            <p class="text-muted mb-2">Stok: 1 Bungkus</p>
+            <strong class="product-price mb-3">Rp 2.500</strong>
+            <button class="btn btn-success mt-auto btn-add-cart" type="button">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card product-card h-100" data-product="Beras 5 Kg" data-price="72000" data-unit="Karung">
+          <div class="product-visual product-visual-clean">
+            <svg class="product-svg" viewBox="0 0 160 130" role="img" aria-label="Ilustrasi karung beras pixel">
+              <rect x="0" y="0" width="160" height="130" fill="none"/>
+              <path d="M52 18 H108 L118 108 H42 Z" fill="#fff1c9" stroke="#26364d" stroke-width="5"/>
+              <rect x="58" y="30" width="44" height="8" fill="#d9a441"/>
+              <rect x="54" y="52" width="52" height="30" fill="#ffffff" stroke="#d9a441" stroke-width="4"/>
+              <text x="80" y="72" text-anchor="middle" font-size="14" font-weight="800" fill="#5b4a2d">5 KG</text>
+              <rect x="57" y="92" width="8" height="8" fill="#d9a441"/>
+              <rect x="76" y="98" width="8" height="8" fill="#d9a441"/>
+              <rect x="96" y="90" width="8" height="8" fill="#d9a441"/>
+            </svg>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5 fw-bold">Beras 5 Kg</h2>
+            <p class="text-muted mb-2">Stok: 24 Karung</p>
+            <strong class="product-price mb-3">Rp 72.000</strong>
+            <button class="btn btn-success mt-auto btn-add-cart" type="button">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card product-card h-100" data-product="Kopi Sachet" data-price="1500" data-unit="Sachet">
+          <div class="product-visual product-visual-clean">
+            <svg class="product-svg" viewBox="0 0 160 130" role="img" aria-label="Ilustrasi kopi sachet pixel">
+              <rect x="0" y="0" width="160" height="130" fill="none"/>
+              <rect x="56" y="16" width="48" height="98" fill="#6b3f2c" stroke="#26364d" stroke-width="5"/>
+              <rect x="56" y="16" width="48" height="10" fill="#f8d39a"/>
+              <rect x="56" y="104" width="48" height="10" fill="#f8d39a"/>
+              <rect x="68" y="38" width="24" height="20" fill="#fff4dc"/>
+              <rect x="70" y="56" width="20" height="7" fill="#8b5e3c"/>
+              <rect x="66" y="78" width="28" height="8" fill="#f8d39a"/>
+              <rect x="72" y="30" width="6" height="12" fill="#f8d39a"/>
+              <rect x="84" y="30" width="6" height="12" fill="#f8d39a"/>
+            </svg>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5 fw-bold">Kopi Sachet</h2>
+            <p class="text-muted mb-2">Stok: 58 Sachet</p>
+            <strong class="product-price mb-3">Rp 1.500</strong>
+            <button class="btn btn-success mt-auto btn-add-cart" type="button">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card product-card h-100" data-product="Gula 1 Kg" data-price="17000" data-unit="Pouch">
+          <div class="product-visual product-visual-clean">
+            <svg class="product-svg" viewBox="0 0 160 130" role="img" aria-label="Ilustrasi gula kemasan pixel">
+              <rect x="0" y="0" width="160" height="130" fill="none"/>
+              <path d="M54 18 H106 L114 112 H46 Z" fill="#ffffff" stroke="#26364d" stroke-width="5"/>
+              <rect x="60" y="30" width="40" height="9" fill="#7fc8ff"/>
+              <rect x="57" y="54" width="46" height="30" fill="#e8f6ff" stroke="#7fc8ff" stroke-width="4"/>
+              <text x="80" y="74" text-anchor="middle" font-size="13" font-weight="800" fill="#287bb8">1 KG</text>
+              <rect x="58" y="95" width="8" height="8" fill="#9ed8ff"/>
+              <rect x="78" y="100" width="8" height="8" fill="#9ed8ff"/>
+              <rect x="98" y="92" width="8" height="8" fill="#9ed8ff"/>
+            </svg>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5 fw-bold">Gula 1 Kg</h2>
+            <p class="text-muted mb-2">Stok: 17 Pouch</p>
+            <strong class="product-price mb-3">Rp 17.000</strong>
+            <button class="btn btn-success mt-auto btn-add-cart" type="button">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="row g-4 mt-4" id="keranjangBelanja">
+      <div class="col-lg-7">
+        <div class="card h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+              <div>
+                <h2 class="h4 fw-bold mb-1">Keranjang Belanja</h2>
+                <p class="text-muted mb-0">Barang yang dipilih pembeli akan muncul di sini.</p>
+              </div>
+              <button class="btn btn-outline-danger btn-sm" id="btnClearCart" type="button"><i class="bi bi-trash me-1"></i>Kosongkan</button>
+            </div>
+            <div id="cartList" class="cart-list"></div>
+            <div class="cart-summary mt-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <span>Total Belanja</span>
+                <strong id="cartTotal">Rp 0</strong>
+              </div>
+              <button class="btn btn-primary w-100 mt-3" id="btnCheckout" type="button"><i class="bi bi-bag-check me-1"></i>Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5" id="riwayatBelanja">
+        <div class="card h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+              <div>
+                <h2 class="h4 fw-bold mb-1">Riwayat Belanja</h2>
+                <p class="text-muted mb-0">Daftar transaksi pembeli setelah checkout.</p>
+              </div>
+              <button class="btn btn-outline-secondary btn-sm" id="btnClearHistory" type="button">Hapus</button>
+            </div>
+            <div id="historyList" class="history-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="assets/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/siwarung-pertemuan13.js"></script>
+</body>
+</html>

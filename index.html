@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - SiWarung</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/siwarung-bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-siwarung sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="assets/logo.png" class="brand-logo" alt="Logo SiWarung">
+      <span>SiWarung</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSiWarung" aria-controls="navbarSiWarung" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSiWarung">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<main class="login-shell">
+  <div class="container">
+    <div class="row justify-content-center align-items-center g-4">
+      <div class="col-lg-5 col-md-7">
+        <div class="card card-soft">
+          <div class="card-body p-4 p-md-5">
+            <div class="text-center mb-4">
+              <img src="assets/logo.png" class="logo-large mb-3" alt="Logo SiWarung">
+              <h1 class="h3 fw-bold mb-1">Login SiWarung</h1>
+              <p class="text-muted mb-0">Masuk sebagai admin atau pelanggan sesuai akun yang digunakan.</p>
+            </div>
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Masukkan username">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Masukkan password">
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+              <div class="account-demo mt-3">
+                <div><span>Admin</span><strong>admin / 12345</strong></div>
+                <div><span>Pelanggan</span><strong>pelanggan / 12345</strong></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="assets/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/siwarung-pertemuan13.js"></script>
+</body>
+</html>
